@@ -119,13 +119,13 @@ var runtimeCommands = []cli.Command{
 	versionCLICommand,
 
 	// Kata Containers specific extensions
-	kataCheckCLICommand,
+	kataCheckCLICommand,	// kata-runtime check 就由这个来实现
 	kataEnvCLICommand,
-	kataExecCLICommand,
+	kataExecCLICommand,		// 由 debug 控制器进入容器
 	kataMetricsCLICommand,
 	factoryCLICommand,
 	kataVolumeCommand,
-	kataIPTablesCommand,
+	kataIPTablesCommand,	// 在 Kata Containers guest 中获取或设置 iptables
 }
 
 // runtimeBeforeSubcommands is the function to run before command-line
@@ -412,13 +412,13 @@ func setCLIGlobals() {
 func createRuntimeApp(ctx context.Context, args []string) error {
 	app := cli.NewApp()
 
-	app.Name = katautils.NAME
+	app.Name = katautils.NAME	// app的名字？
 	app.Writer = defaultOutputFile
 	app.Usage = usage
 	app.CommandNotFound = runtimeCommandNotFound
 	app.Version = runtimeVersion()
 	app.Flags = runtimeFlags
-	app.Commands = runtimeCommands
+	app.Commands = runtimeCommands	// 这里设置了各种命令
 	app.Before = runtimeBeforeSubcommands
 	app.EnableBashCompletion = true
 
@@ -470,7 +470,7 @@ func createRuntime(ctx context.Context) {
 
 	setCLIGlobals()
 
-	err := createRuntimeApp(ctx, os.Args)
+	err := createRuntimeApp(ctx, os.Args)	// 这里开始创建程序
 	if err != nil {
 		fatal(err)
 	}
