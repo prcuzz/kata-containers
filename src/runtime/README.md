@@ -191,3 +191,25 @@ and the
 
 For details of the other packages contained in this repository, see the
 [package documentation](pkg).
+
+
+
+# 代码结构
+
+arch：放了4个makefile文件，和架构相关，暂时不知道会怎么被使用
+
+cmd：这里有3个文件夹，分别是containerd-shim-kata-v2、kata-monitor、kata-runtime，应该是这3个binary处理命令行参数的代码？
+
+config：放了几个配置文件，暂时不知道是干啥的
+
+data：只有两个bash脚本，暂时不知道是干啥的
+
+hack：只有三个bash脚本，暂时不知道是干啥的
+
+pkg：包
+
+protocols：看不懂
+
+vendor：看不懂
+
+virtcontainers：virtcontainers 是一个 Go 库，可用于构建硬件虚拟化容器运行时。这里应该是起虚拟机的代码？
